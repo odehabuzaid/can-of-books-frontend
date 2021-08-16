@@ -11,7 +11,6 @@ const providerConfig = {
   domain: config.domain,
   clientId: config.clientId,
   redirectUri: window.location.origin,
- 
 };
 
 ReactDOM.render(
@@ -20,6 +19,3 @@ ReactDOM.render(
   </Auth0Provider>,
   document.getElementById("root")
 );
-
-
-
