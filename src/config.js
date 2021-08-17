@@ -11,4 +11,3 @@ export function getConfig() {
     ...(audience ? { audience } : null),
   };
 }
-
