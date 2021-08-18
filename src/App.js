@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from './Header';
 import IsLoadingAndError from './IsLoadingAndError';
-
 import Footer from './Footer';
 import {withAuth0} from '@auth0/auth0-react';
 import {
@@ -13,10 +12,10 @@ import Login from './Login';
 import Profile from './Profile';
 import BestBooks from './BestBooks';
 
-
 class App extends React.Component {
 
   render() {
+    
     console.log( 'app', this.props );
     return(
       <>
