@@ -1,10 +1,10 @@
 import React from 'react';
-import {Carousel} from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import './BestBooks.css';
 
 class BooksCarousel extends React.Component {
   render() {
-    const {books} = this.props;
+    const { books } = this.props;
     return (
       <Carousel
         className='carousel slide carouselExampleSlidesOnly'
