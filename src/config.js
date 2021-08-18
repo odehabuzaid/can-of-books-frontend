@@ -9,6 +9,6 @@ export function getConfig() {
     backEnd: process.env.REACT_APP_SERVER_BACKEND,
     domain: process.env.REACT_APP_AUTH0_DOMAIN,
     clientId: process.env.REACT_APP_AUTH0_CLIENTID,
-    ...(audience ? { audience } : null),
+    ...( audience ? { audience } : null ),
   };
 }
