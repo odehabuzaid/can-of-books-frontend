@@ -87,7 +87,6 @@ class MyFavoriteBooks extends React.Component {
         .then( ( response ) => {
           this.setState( { books: response.data }, () =>
             console.log( response.data )
-
           );
         } )
         .catch( ( err ) => console.error( err ) );
@@ -122,7 +121,6 @@ class MyFavoriteBooks extends React.Component {
   };
 
   render() {
-
     return (
       <>
         <Jumbotron>
@@ -152,7 +150,6 @@ class MyFavoriteBooks extends React.Component {
         </Jumbotron>
       </>
     );
-
   }
 }
 

@@ -9,12 +9,25 @@ import './Header.css';
 class Header extends React.Component {
   render() {
     return (
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="btn-toolbar">
-        <Navbar.Brand >My Favorite Books</Navbar.Brand>
-        { this.props.auth0.isAuthenticated ? (
-          <><Button className="btn-sm mr-1"><Link to="/">Home</Link></Button>
-            <Button className="btn-sm mr-1"><Link to="/profile">Profile</Link></Button>
-            <LogoutButton/>  </> ) : null }
+      <Navbar
+        collapseOnSelect
+        expand='lg'
+        bg='dark'
+        variant='dark'
+        className='btn-toolbar'
+      >
+        <Navbar.Brand>My Favorite Books</Navbar.Brand>
+        {this.props.auth0.isAuthenticated ? (
+          <>
+            <Button className='btn-sm mr-1'>
+              <Link to='/'>Home</Link>
+            </Button>
+            <Button className='btn-sm mr-1'>
+              <Link to='/profile'>Profile</Link>
+            </Button>
+            <LogoutButton />{' '}
+          </>
+        ) : null}
       </Navbar>
     );
   }

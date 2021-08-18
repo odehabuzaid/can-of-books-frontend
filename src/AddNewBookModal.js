@@ -14,7 +14,6 @@ class AddNewBookModal extends React.Component {
       closeModal,
     } = this.props;
 
-
     return (
       <Modal show={show} onHide={closeModal}>
         <Modal.Header>
