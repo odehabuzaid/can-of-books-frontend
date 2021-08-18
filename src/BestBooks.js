@@ -54,7 +54,7 @@ class MyFavoriteBooks extends React.Component {
           const config = {
             headers: { Authorization: `Bearer ${jwt}` },
             method: 'get',
-            baseURL: 'http://localhost:3050',
+            baseURL: process.env.REACT_APP_SERVER_BACKEND,
             url: '/books',
           };
           axios( config )
