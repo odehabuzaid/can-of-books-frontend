@@ -19,8 +19,8 @@ class BooksCarousel extends React.Component {
               height='300px'
             />
             <Carousel.Caption>
-              <h3>{book.Book_Title}</h3>
-              <p>{book.Book_DESC}</p>
+              <h3>{book.title}</h3>
+              <p>{book.description}</p>
               <small>{book.status}</small>
             </Carousel.Caption>
           </Carousel.Item>
