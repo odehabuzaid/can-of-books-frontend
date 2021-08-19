@@ -19,10 +19,10 @@ class Header extends React.Component {
         <Navbar.Brand>My Favorite Books</Navbar.Brand>
         {this.props.auth0.isAuthenticated ? (
           <>
-            <Button className='btn-sm mr-1'>
+            <Button variant="outline-secondary" className='btn-sm mr-1'>
               <Link to='/'>Home</Link>
             </Button>
-            <Button className='btn-sm mr-1'>
+            <Button variant="outline-secondary" className='btn-sm mr-1'>
               <Link to='/profile'>Profile</Link>
             </Button>
             <LogoutButton />{' '}

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { Auth0Provider } from '@auth0/auth0-react';
 
-import { getConfig } from './config';
+import { getConfig } from './components/config';
 
 const config = getConfig();
 const providerConfig = {
