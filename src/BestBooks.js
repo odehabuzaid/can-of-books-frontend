@@ -1,14 +1,15 @@
 import React from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
-import { getConfig } from './config';
+import { getConfig } from './components/config';
 import { withAuth0 } from '@auth0/auth0-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BestBooks.css';
 import { Container, Col, Row, Button } from 'react-bootstrap';
-import AddNewBookModal from './AddNewBookModal';
-import Books from './Books';
-import axios from 'axios';
+import UpdateBookModal from './components/UpdateBookModal';
+import AddNewBookModal from './components/AddNewBookModal';
 
+import Books from './components/Books';
+import axios from 'axios';
 class MyFavoriteBooks extends React.Component {
   constructor( props ) {
     super( props );
@@ -18,6 +19,7 @@ class MyFavoriteBooks extends React.Component {
       description: '',
       bookstatus: '',
       showModal: false,
+      showUpdate: false,
     };
   }
 
@@ -31,7 +33,7 @@ class MyFavoriteBooks extends React.Component {
             headers: { Authorization: 'Bearer ' + jwt },
             audience: getConfig.audience,
             method: 'get',
-            baseURL: process.env.REACT_APP_SERVER_BACKEND,
+            baseURL: getConfig.backEnd,
             url: '/checkJwt',
           };
           axios( config )
@@ -49,8 +51,8 @@ class MyFavoriteBooks extends React.Component {
     if ( this.props.auth0.isAuthenticated ) {
       this.props.auth0
         .getIdTokenClaims()
-        .then( ( res ) => {
-          const jwt = res.__raw;
+        .then( ( token ) => {
+          const jwt = token.__raw;
           const config = {
             headers: { Authorization: `Bearer ${jwt}` },
             method: 'get',
@@ -75,12 +77,61 @@ class MyFavoriteBooks extends React.Component {
       const requestConfig = {
         headers: { Authorization: `Bearer ${jwt}` },
         method: 'post',
-        baseURL: process.env.REACT_APP_SERVER_BACKEND,
-        url: '/addabook',
+        baseURL: getConfig.backEnd,
+        url: '/books',
         params: {
           title: this.state.title,
           description: this.state.description,
           status: this.state.bookstatus,
+        },
+      };
+
+      axios( requestConfig )
+        .then( ( response ) => {
+          this.setState( { books: response.data }, () =>
+            console.log( response.data )
+          );
+        } )
+        .catch( ( err ) => console.error( err ) );
+    } );
+    //life cycle @hamza ;)
+    this.render();
+    this.closeModal();
+  };
+
+  deleteaBook = async ( id ) => {
+    this.props.auth0.getIdTokenClaims().then( ( token ) => {
+      const jwt = token.__raw;
+      const requestConfig = {
+        headers: { Authorization: `Bearer ${jwt}` },
+        method: 'delete',
+        baseURL: process.env.REACT_APP_SERVER_BACKEND,
+        url: `/books/${id}`,
+      };
+      axios( requestConfig )
+        .then( ( response ) => {
+          this.setState( { books: response.data }, () =>
+            console.log( response.data )
+          );
+        } )
+        .catch( ( err ) => console.error( err ) );
+    } );
+    this.render();
+  };
+
+  updateaBook = async ( id, newTitle, newDescription, newStatus ) => {
+    // alert( id, title, description, status );
+    this.props.auth0.getIdTokenClaims().then( ( tokenData ) => {
+      const jwt = tokenData.__raw;
+      const requestConfig = {
+        headers: { Authorization: `Bearer ${jwt}` },
+        method: 'put',
+        baseURL: getConfig.backEnd,
+        url: `/books/${id}`,
+        params: {
+          title: newTitle,
+          description: newDescription,
+          status: newStatus,
         },
       };
       axios( requestConfig )
@@ -91,11 +142,8 @@ class MyFavoriteBooks extends React.Component {
         } )
         .catch( ( err ) => console.error( err ) );
     } );
-
-    //life cycle @hamza ;)
+    this.closeUpdateModa();
     this.render();
-
-    this.closeModal();
   };
 
   openModal = () => {
@@ -120,16 +168,26 @@ class MyFavoriteBooks extends React.Component {
     } );
   };
 
+  openUpdateModa = () => {
+    this.setState( { showUpdate: true } );
+  };
+  closeUpdateModa = () => {
+    this.setState( { showUpdate: false } );
+  };
   render() {
     return (
       <>
         <Jumbotron>
           <Button className='btn-sm mr-1 pull-right' onClick={this.openModal}>
-            {' '}
-            add New book{' '}
+            add New book
           </Button>
-          <h1>My Favorite Books</h1>
-
+          <Button
+            variant='success'
+            className='btn-sm mr-1 pull-right'
+            onClick={this.openUpdateModa}
+          >
+            update a Book
+          </Button>
           <AddNewBookModal
             bookTitle={this.bookTitle}
             bookDescription={this.bookDescription}
@@ -138,16 +196,33 @@ class MyFavoriteBooks extends React.Component {
             closeModal={this.closeModal}
             show={this.state.showModal}
           />
-          <Container fluid>
-            <Row>
-              <Col>
-                {this.state.books.length > 0 && (
-                  <Books books={this.state.books} />
-                )}
-              </Col>
-            </Row>
-          </Container>
+          <h1>My Favorite Books</h1>
         </Jumbotron>
+        <Container fluid>
+          <Row>
+            <Col>
+              {this.state.books.length > 0 && (
+                <>
+                  <Books
+                    books={this.state.books}
+                    deleteaBook={this.deleteaBook}
+                  />
+                  <UpdateBookModal
+                    books={this.state.books}
+                    updateaBook={this.updateaBook}
+                    closeUpdateModa={this.closeUpdateModa}
+                    show={this.state.showUpdate}
+                    title={this.state.title}
+                    description={this.state.description}
+                    bookstatus={this.state.bookstatus}
+                    bookSetStateUpdate={this.BookSetStateUpdate}
+                  />
+                  ;
+                </>
+              )}
+            </Col>
+          </Row>
+        </Container>
       </>
     );
   }

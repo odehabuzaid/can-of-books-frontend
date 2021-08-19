@@ -43,13 +43,68 @@ Finish time: 15/08/2021   10:30
 Actual time needed to complete: 2 Hours
 
 
-
 Name of feature: Authentication
 
 Estimate of time needed to complete: 1 hours 
 
 Start time: 15/08/2021   10:30 
 
-Finish time: 15/08/2021   11:15 
+Finish time: 15/08/2021   01:15 
 
-Actual time needed to complete: 2 Hours
+Actual time needed to complete: 3 Hours
+
+
+
+Name of feature: Storage
+
+Estimate of time needed to complete: 2 hours 
+
+Start time: 16/08/2021   07:30 
+
+Finish time: 18/08/2021   03:am 
+
+Actual time needed to complete: 2 days
+
+
+Name of feature: Book Component
+
+Estimate of time needed to complete: 1 hours 
+
+Start time: 18/08/2021   04:00 am
+
+Finish time: 18/08/2021   04:45 
+
+Actual time needed to complete: 1 Hour
+
+
+Name of feature: Create As a user
+
+Estimate of time needed to complete: 1 hours 
+
+Start time: 18/08/2021   05:30 am
+
+Finish time: 18/08/2021   06:30 am
+
+Actual time needed to complete: 1 Hours
+
+
+Name of feature: Delete
+
+Estimate of time needed to complete: 1 hours 
+
+Start time: 18/08/2021   07:30 pm
+
+Finish time: 18/08/2021   08:15 pm
+
+Actual time needed to complete: 1 Hours
+
+
+Name of feature: Update
+
+Estimate of time needed to complete: 1 hours 
+
+Start time: 19/08/2021   04:00 am 
+
+Finish time: 19/08/2021   04:45 
+
+Actual time needed to complete: 1 hour

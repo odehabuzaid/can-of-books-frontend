@@ -22,35 +22,43 @@ class AddNewBookModal extends React.Component {
         <Modal.Body>
           <Form id='formGroups'>
             <FormGroup style={{ margin: '10px' }}>
-              <Form.Label style={{ marginBottom: '10px' }}>
-                <h4>Enter A New Book</h4>
-              </Form.Label>
+              <Form.Label style={{ marginBottom: '10px' }}>Title</Form.Label>
               <Form.Control
-                className='md-4'
                 placeholder='Book Title'
                 onChange={bookTitle}
+                type='text'
+                required
               ></Form.Control>
+              <Form.Label style={{ marginBottom: '10px' }}>
+                Description
+              </Form.Label>
               <Form.Control
-                className='md-4'
+                className='md-5'
                 placeholder='Book Description'
                 onChange={bookDescription}
+                type='text'
+                required
               ></Form.Control>
+              <Form.Label style={{ marginBottom: '10px' }}>Status</Form.Label>
               <Form.Control
-                className='md-'
+                className='md-5'
                 placeholder='Status'
                 onChange={bookStatus}
+                type='text'
+                required
               ></Form.Control>
             </FormGroup>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          {' '}
           <Button
+            type='submit'
             variant='success'
+            className='mr-1'
             style={{ margin: '10px' }}
             onClick={addaBook}
           >
-            Add Book
+            add book
           </Button>
         </Modal.Footer>
       </Modal>
