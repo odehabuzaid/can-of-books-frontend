@@ -33,7 +33,7 @@ class MyFavoriteBooks extends React.Component {
             headers: { Authorization: 'Bearer ' + jwt },
             audience: getConfig.audience,
             method: 'get',
-            baseURL: getConfig.backEnd,
+            baseURL: process.env.REACT_APP_SERVER_BACKEND,
             url: '/checkJwt',
           };
           axios( config )
@@ -77,7 +77,7 @@ class MyFavoriteBooks extends React.Component {
       const requestConfig = {
         headers: { Authorization: `Bearer ${jwt}` },
         method: 'post',
-        baseURL: getConfig.backEnd,
+        baseURL:  process.env.REACT_APP_SERVER_BACKEND,
         url: '/books',
         params: {
           title: this.state.title,
@@ -126,7 +126,7 @@ class MyFavoriteBooks extends React.Component {
       const requestConfig = {
         headers: { Authorization: `Bearer ${jwt}` },
         method: 'put',
-        baseURL: getConfig.backEnd,
+        baseURL:  process.env.REACT_APP_SERVER_BACKEND,
         url: `/books/${id}`,
         params: {
           title: newTitle,
